@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 13:16:39 by anamedin          #+#    #+#             */
-/*   Updated: 2024/06/04 13:06:51 by anamedin         ###   ########.fr       */
+/*   Created: 2024/06/05 11:45:58 by anamedin          #+#    #+#             */
+/*   Updated: 2024/06/05 12:45:04 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <unistd.h>
-
-int atoi(const char *str)
+char *ft_strrev(char *str)
 {
-	int result;
-	int sign;
+    int i = 0;
+    int length = 0;
+    char temporary;
 
-	while(*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		sign++;
-	while (*str == '0' && *str == '9')
-	{
-		result = result * 10 + *str - '0';
-		str++;
-	}
-	return (sign * result);
+    // Calcular la longitud de la cadena
+    while (str[length])
+        length++;
+
+    // Invertir la cadena
+    while (i < length / 2)
+    {
+        temporary = str[i];
+        str[i] = str[length - 1 - i];
+        str[length - 1 - i] = temporary;
+        i++;
+    }
+
+    return str;
 }
+
