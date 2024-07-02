@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:12:31 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/02 12:39:35 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:06:11 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,4 +129,157 @@ char	**ft_split(char *str)
 }
 
 /***************************************************************************************/
+#include <unistd.h>
 
+int main(int argc, char **argv)
+{
+	int start;
+	int end;
+	int i = 0;
+		
+	if(argc == 2)
+	{   
+		while(argv[1][i] != '\0')
+			i++;
+		while(i >= 0)
+		{
+			while( argv[1][i] == '\0' || argv[1][i] == ' ' || argv[1][i] == '\t')
+				i--;
+			end = i;
+			while(argv[1][i] && argv[1][i] != ' ' && argv[1][i] != '\t')
+				i--;
+			start = i + 1;
+			int  flag;
+			flag = start;
+			while(start <= end)
+			{
+				write (1, &argv[1][start],1);
+				start++;		
+			}
+			if (flag !=0)
+				write(1, " ", 1);
+		}
+	}
+	write(1, "\n", 1);
+}
+
+
+
+/************************************************************************************/
+
+// Passed Moulinette 2019.09.01
+
+#include <unistd.h>
+
+int		skip_whitespace(char *str, int i)
+{
+	while (str[i] == ' ' || str[i] == '\t')
+		++i;
+	return (i);
+}
+
+int		ft_wordlen(char *str)
+{
+	int i = 0;
+
+	while (str[i] != '\0' && str[i] != ' ' && str[i] != '\t')
+		++i;
+	return (i);
+}
+
+int		print_word(char *str, int i, int *is_first)
+{
+	int word_len;
+
+	i = skip_whitespace(str, i);
+	word_len = ft_wordlen(str + i);
+	if (*is_first == 0)
+		write(1, " ", 1);
+	write(1, str + i, word_len);
+	*is_first = 0;
+	return (i + word_len);
+}
+
+int		epur_str(char *str)
+{
+	int i = 0;
+	int is_first = 1;
+
+	i = skip_whitespace(str, i);
+	while (str[i] != '\0')
+	{
+		i = print_word(str, i, &is_first);
+		i = skip_whitespace(str, i);
+	}
+	return (is_first);
+}
+
+int		main(int argc, char **argv)
+{
+	if (argc >= 2)
+	{
+		char *str = argv[1];
+		int i = 0;
+		int is_first;
+
+		i = skip_whitespace(str, i);
+		i = i + ft_wordlen(str + i);
+		is_first = epur_str(str + i);
+		print_word(str, 0, &is_first);
+	}
+	write(1, "\n", 1);
+	return (0);
+}
+
+
+#include <unistd.h>
+
+void write_word(char *start, char *end)
+{
+    while (start < end)
+    {
+        write(1, start, 1);
+        start++;
+    }
+}
+
+int main(int argc, char **argv)
+{
+    char *str;
+    char *first_word_start;
+    char *first_word_end;
+
+    if (argc > 1)
+    {
+        str = argv[1];
+        while (*str == ' ' || *str == '\t')
+            str++;
+        first_word_start = str;
+        while (*str && *str != ' ' && *str != '\t')
+            str++;
+        first_word_end = str;
+        while (*str == ' ' || *str == '\t')
+            str++;
+        if (*str) {
+            while (*str)
+            {
+                if (*str == ' ' || *str == '\t')
+                {
+                    while (*str == ' ' || *str == '\t')
+                        str++;
+                    if (*str)
+                        write(1, " ", 1);
+                }
+                else
+                {
+                    write(1, str, 1);
+                    str++;
+                }
+            }
+            write(1, " ", 1);
+        }
+        write_word(first_word_start, first_word_end);
+    }
+    write(1, "\n", 1);
+    return 0;
+}
