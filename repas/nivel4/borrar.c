@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 10:12:31 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/02 17:06:11 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/02 19:39:34 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,16 +252,23 @@ int main(int argc, char **argv)
     if (argc > 1)
     {
         str = argv[1];
-        while (*str == ' ' || *str == '\t')
+        while (*str == ' ' || *str == '\t') //si encuentra espacios recorrera
+											//la str si no NO Y DEVUELVE LA H  
             str++;
+		//hello world
         first_word_start = str;
-        while (*str && *str != ' ' && *str != '\t')
+		//o
+		//hello
+        while (*str && *str != ' ' && *str != '\t') //Se marca el inicio de la primera
+													//palabra en first_word_start
+													//Se avanza str hasta el final de la primera palabra.
             str++;
         first_word_end = str;
-        while (*str == ' ' || *str == '\t')
+        while (*str == ' ' || *str == '\t') //Se avanza str para saltar los espacios
+											//entre la primera y las siguientes palabras.
             str++;
         if (*str) {
-            while (*str)
+            while (*str)   //Para cada palabra, se imprimen los caracteres uno a uno.
             {
                 if (*str == ' ' || *str == '\t')
                 {
@@ -283,3 +290,111 @@ int main(int argc, char **argv)
     write(1, "\n", 1);
     return 0;
 }
+/*************************************************************************************/
+void	sort_int_tab(int *tab, unsigned int size)
+{
+	unsigned int	i = 0;
+	int	temp;
+
+	while (i < (size - 1))
+	{
+		if (tab[i] > tab[i + 1])
+		{
+			temp = tab[i];
+			tab[i] = tab[i+ 1];
+			tab[i + 1] = temp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+}
+
+
+
+/*****************************************************************************************/
+// Passed Moulinette 2019.09.01
+
+void	swap_values(int *a, int *b)
+{
+	int swap = *a;
+	*a = *b;
+	*b = swap;
+}
+
+void	sort_int_tab(int *tab, unsigned int size)
+{
+	unsigned int i;
+	int swapped = 1;
+
+	while (swapped == 1)
+	{
+		i = 1;
+		swapped = 0;
+		while (i < size)
+		{
+			if (tab[i - 1] > tab[i])
+			{
+				swap_values(&tab[i - 1], &tab[i]);
+				swapped = 1;
+			}
+			++i;
+		}
+	}
+}
+
+//------------------------------------------------------------------
+// #include <stdio.h>
+
+
+
+
+
+
+void	swap_values(int *a, int *b)
+{
+	int swap = *a;
+	*a = *b;
+	*b = swap;
+}
+
+void	sort_int_tab(int *tab, unsigned int size)
+{
+	unsigned int i;
+	int swapped = 1;
+
+	while (swapped == 1)
+	{
+		i = 1;
+		swapped = 0;
+		while (i < size)
+		{
+			if (tab[i - 1] > tab[i])
+			{
+				swap_values(&tab[i - 1], &tab[i]);
+				swapped = 1;
+			}
+			++i;
+		}
+	}
+}
+// void	print_arr(int *tab, unsigned int size)
+// {
+// 	unsigned int i = 0;
+// 	while (i < size)
+// 	{
+// 		printf("%d, ", tab[i]);
+// 		++i;
+// 	}
+// 	printf("\n");
+// }
+
+// int		main(void)
+// {
+// 	int tab[] = { 5, -4, 3, -2, 1, 0 };
+// 	unsigned int size = sizeof(tab) / sizeof(*tab);
+
+// 	print_arr(tab, size);
+// 	sort_int_tab(tab, size);
+// 	print_arr(tab, size);
+// }
