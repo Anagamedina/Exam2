@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/03 10:42:18 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/03 12:02:10 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/03 15:19:58 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
 		return;
 
 	//ELiminar nodos al principio de la lista
-	while(*begin_list && cmp((*begin_list) ->data, data_ref) == 0)
+	while(*begin_list && cmp((*begin_list)->data, data_ref) == 0)
 	{
 		temp = *begin_list;//si es igual que data_ref se guarda en temp
 		(*begin_list) = (*begin_list)->next;//se actualiza al siguiente nodo 

@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 00:29:15 by anamedin          #+#    #+#             */
-/*   Updated: 2024/06/27 00:34:39 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:19:20 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int main()
 /*Convierte cada carácter a su valor numérico correspondiente:
 '0' a '9' se convierten restando '0'.
 'a' a 'f' se convierten restando 'a' y sumando 10.
-'A' a 'F' se convierten restando 'A' y sumando 10
 
 
 
