@@ -6,7 +6,7 @@
 /*   By: anamedin <anamedin@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/02 16:29:40 by anamedin          #+#    #+#             */
-/*   Updated: 2024/07/04 21:45:08 by anamedin         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:35:38 by anamedin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int main(int argc, char **argv)
 					while(*str == ' ' || *str == '\t')
 						str++;
 					if(*str)
-						write(1, str, 1);
-					str++;
+						write(1, " ", 1);
 				}
 				else
 				{
